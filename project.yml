@@ -1,0 +1,4 @@
+# project.yml এর ভেতরে settings এর নিচে যোগ করুন
+settings:
+  CODE_SIGN_ENTITLEMENTS: GameHub/GameHub.entitlements
+  OTHER_LDFLAGS: -Wl,-sectcreate,__TEXT,__info_plist,GameHub/Info.plist
