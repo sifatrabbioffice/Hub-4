@@ -1,4 +1,14 @@
-# project.yml এর ভেতরে settings এর নিচে যোগ করুন
-settings:
-  CODE_SIGN_ENTITLEMENTS: GameHub/GameHub.entitlements
-  OTHER_LDFLAGS: -Wl,-sectcreate,__TEXT,__info_plist,GameHub/Info.plist
+name: GameHub
+options:
+  bundleIdPrefix: com.sifatrabbioffice
+targets:
+  GameHub:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - GameHub
+    settings:
+      # JIT এনাবেল করার জন্য গুরুত্বপূর্ণ সেটিংস
+      ENABLE_USER_SCRIPT_SANDBOXING: NO
+      SWIFT_OPTIMIZATION_LEVEL: "-O"
