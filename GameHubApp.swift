@@ -2,27 +2,27 @@ import SwiftUI
 
 @main
 struct GameHubApp: App {
-    @State private var isWelcomeActive = true
+    @State private var showWelcome = true
     
     var body: some Scene {
         WindowGroup {
-            if isWelcomeActive {
-                // স্প্ল্যাশ স্ক্রিন: Welcome Sifat
+            if showWelcome {
                 VStack {
                     Text("Welcome Sifat")
-                        .font(.system(size: 34, weight: .bold, design: .rounded))
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
                         .foregroundColor(.blue)
                 }
                 .onAppear {
-                    // ২ সেকেন্ড পর মূল ড্যাশবোর্ডে চলে যাবে
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    // ২ সেকেন্ড পর অটোমেটিক ড্যাশবোর্ডে যাবে
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         withAnimation {
-                            isWelcomeActive = false
+                            showWelcome = false
                         }
                     }
                 }
             } else {
-                ContentView()
+                ContentView() // এরপর ড্যাশবোর্ড দেখাবে
             }
         }
     }
