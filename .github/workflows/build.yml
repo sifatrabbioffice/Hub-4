@@ -1,0 +1,29 @@
+name: Build IPA
+on: [push]
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate Project
+        run: xcodegen generate
+      - name: Build Archive
+        run: |
+          xcodebuild archive -project GameHub.xcodeproj \
+          -scheme GameHub \
+          -archivePath GameHub.xcarchive \
+          -sdk iphoneos \
+          CODE_SIGNING_ALLOWED=NO
+      - name: Export IPA
+        run: |
+          mkdir Payload
+          cp -r GameHub.xcarchive/Products/Applications/GameHub.app Payload/
+          zip -r GameHub.ipa Payload
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: GameHub-IPA
+          path: GameHub.ipa
