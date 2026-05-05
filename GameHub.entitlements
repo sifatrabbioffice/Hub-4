@@ -1,0 +1,4 @@
+<key>dynamic-codesigning</key>
+<true/>
+<key>com.apple.developer.kernel.increased-memory-limit</key>
+<true/>
